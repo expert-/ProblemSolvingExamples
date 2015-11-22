@@ -35,3 +35,8 @@
   position: absolute;
   background: #69C;
 }
+
+#time {
+  width: 120px;
+  text-align: center;
+}
