@@ -1,9 +1,4 @@
-function drag(target, evt) {
-    evt.dataTransfer.setData("Text", target.id);
-}
-function drop(target, evt) {
-    var id = evt.dataTransfer.getData("Text");
-    target.appendChild(document.getElementById(id));
-    // prevent default behavior
-    evt.preventDefault();
-}
+function drop(target, event) {
+    event.preventDefault();
+    target.innerHTML = event.dataTransfer.getData('text/plain');
+};
