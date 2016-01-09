@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lng="en"><head><link rel="stylesheet" type="text/css" href="style.css"/></head>
+<html lang="en"><head><link rel="stylesheet" type="text/css" href="style.css"/></head>
 <body>
-<h2>Drop your files here!</h2>
-<div id="droppableZone" ondragenter="dragEnterHandler(event)" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
-    Drop zone
-    <ol id="droppedFiles"></ol>
-</div>
+Choose multiple files :<input type="file" id="files" multiple /><br/>
 
+<output id="list"></output>
 <script src="draggingFun.js"></script>
 </body>
 </html>
