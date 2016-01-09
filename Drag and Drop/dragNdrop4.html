@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><link rel="stylesheet" type="text/css" href="style.css"/></head>
+<body>
+<p>What fruits do you like? Try to drag an element!</p>
+<ol ondragstart="dragStartHandler(event)"  ondragend="dragEndHandler(event)" >
+    <li draggable="true" data-value="fruit-apple">Apples</li>
+    <li draggable="true" data-value="fruit-orange">Oranges</li>
+    <li draggable="true" data-value="fruit-pear">Pears</li>
+</ol>
+<div id="droppableZone" ondragenter="dragEnterHandler(event)" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
+    Drop your favorite fruits below:
+    <ol id="droppedFruits"></ol>
+</div>
+<script src="draggingFun.js"></script>
+<body>
+<html>
