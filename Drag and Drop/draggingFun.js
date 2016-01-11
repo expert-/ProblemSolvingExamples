@@ -26,6 +26,7 @@ function dropHandler(event) {
     // Prevent default behavior, in particular when we drop images or links
     event.preventDefault();
 
+
     // reset the visual look of the drop zone to default
     event.target.classList.remove('draggedOver');
 
@@ -40,35 +41,33 @@ function dropHandler(event) {
     for(var i = 0 ; i < filesLen ; i++) {
         filenames += '\n' + files[i].name;
         // Create a li, set its value to a file name, add it to the ol
-        var li = document.createElement('li');
-        li.textContent = files[i].name;
-        document.querySelector("#droppedFiles").appendChild(li);
+        var li =     document.createElement('li');
+        li.textContent = files[i].name;    document.querySelector("#droppedFiles").appendChild(li);
     }
     console.log(files.length + ' file(s) have been dropped:\n' + filenames);
 
-    readFilesAndDisplayPreview(files);
+    uploadAllFilesUsingAjax(files);
+
 }
 
-function readFilesAndDisplayPreview(files) {
-    // Loop through the FileList and render image files as thumbnails.
-    for (var i = 0, f; f = files[i]; i++) {
+function uploadAllFilesUsingAjax(files) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'upload.html');
 
-        // Only process image files.
-        if (!f.type.match('image.*')) {
-            continue;
-        }
+    xhr.upload.onprogress = function(e) {
+        progress.value = e.loaded;
+        progress.max = e.total;
+    };
 
-        var reader = new FileReader();
+    xhr.onload = function() {
+        alert('Upload complete!');
+    };
 
-        //capture the file information.
-        reader.onload = function(e) {
-            // Render thumbnail.
-            var span = document.createElement('span');
-            span.innerHTML = "<img class='thumb' width='100' src='" + e.target.result + "'/>";
-            document.getElementById('list').insertBefore(span, null);
-        };
-
-        // Read in the image file as a data URL.
-        reader.readAsDataURL(f);
+    var form = new FormData();
+    for(var i = 0 ; i < files.length ; i++) {
+        form.append('file', files[i]);
     }
+
+    xhr.send(form);
 }
+      
